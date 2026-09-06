@@ -1,7 +1,7 @@
 import { doc, getDoc, setDoc, collection, getDocs, updateDoc, deleteDoc } from 'firebase/firestore';
 import { db } from './firebase';
 import { StoreSettings, InstagramPost } from '../types';
-import { DEFAULT_STORE_SETTINGS } from '../utils/adminAuth';
+import { DEFAULT_STORE_SETTINGS } from '../utils/adminAuthentication';
 
 export async function getFirebaseStoreSettings(): Promise<StoreSettings> {
   try {

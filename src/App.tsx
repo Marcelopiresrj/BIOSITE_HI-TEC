@@ -17,7 +17,7 @@ import { Star, Layers, Download, Sparkles } from 'lucide-react';
 import { WhatsAppIcon, OfficialWhatsAppIcon, GoogleIcon, InstagramIcon } from './components/Icons';
 import { INSTAGRAM_POSTS, INSTAGRAM_URL } from './data/instagramPosts';
 import { InstagramPost, AdminSession, StoreSettings } from './types';
-import { subscribeToAuthChanges, logoutAdmin, DEFAULT_STORE_SETTINGS } from './utils/adminAuth';
+import { subscribeToAuthChanges, logoutAdmin, DEFAULT_STORE_SETTINGS } from './utils/adminAuthentication';
 import { getFirebaseStoreSettings, getFirebasePosts, saveFirebasePost, deleteFirebasePost } from './lib/firebaseStore';
 import mobileTechBackground from './assets/images/hitech_consoles_bg_1788576459897.jpg';
 import desktopTechBackground from './assets/images/hitech_consoles_wide_1788576474194.jpg';

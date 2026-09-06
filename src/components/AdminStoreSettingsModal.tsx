@@ -16,7 +16,7 @@ import {
   Wrench,
 } from 'lucide-react';
 import { StoreSettings } from '../types';
-import { DEFAULT_STORE_SETTINGS } from '../utils/adminAuth';
+import { DEFAULT_STORE_SETTINGS } from '../utils/adminAuthentication';
 import { saveFirebaseStoreSettings } from '../lib/firebaseStore';
 
 interface AdminStoreSettingsModalProps {

@@ -19,7 +19,7 @@ import {
   loginAdmin,
   registerAdmin,
   recoverPassword,
-} from '../utils/adminAuth';
+} from '../utils/adminAuthentication';
 
 interface AdminAuthModalProps {
   isOpen: boolean;
