@@ -8,7 +8,7 @@ import { InstagramMediaModal } from './components/InstagramMediaModal';
 import { AddMediaModal } from './components/AddMediaModal';
 import { ShareDialog } from './components/ShareDialog';
 import { HoursModal } from './components/HoursModal';
-import { Toast } from './components/Toast';
+import { AppToast } from './components/AppToast';
 import { Footer } from './components/Footer';
 import { AdminBar } from './components/AdminBar';
 import { AdminAuthModal } from './components/AdminAuthModal';
@@ -426,7 +426,7 @@ export default function App() {
           storeSettings={storeSettings}
         />
 
-        <Toast message={toastMessage} />
+        <AppToast message={toastMessage} />
       </div>
     </div>
   );
