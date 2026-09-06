@@ -6,7 +6,7 @@ import { InstagramFeedSection } from './components/InstagramFeedSection';
 import { DesktopInstagramPanel } from './components/DesktopInstagramPanel';
 import { InstagramMediaModal } from './components/InstagramMediaModal';
 import { AddMediaModal } from './components/AddMediaModal';
-import { ShareModal } from './components/ShareModal';
+import { ShareDialog } from './components/ShareDialog';
 import { HoursModal } from './components/HoursModal';
 import { Toast } from './components/Toast';
 import { Footer } from './components/Footer';
@@ -413,7 +413,7 @@ export default function App() {
         />
 
         {/* Standard BioSite Modals & Toast */}
-        <ShareModal
+        <ShareDialog
           isOpen={isShareModalOpen}
           onClose={() => setIsShareModalOpen(false)}
           onShowToast={showToast}
