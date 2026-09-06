@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { X, Upload, Video, Image as ImageIcon, Sparkles, AlertCircle, Play } from 'lucide-react';
 import { InstagramPost } from '../types';
-import { INSTAGRAM_URL } from '../data/instagramPosts';
+import { INSTAGRAM_URL } from '../data/instagramData';
 
 interface AddMediaModalProps {
   isOpen: boolean;

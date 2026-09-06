@@ -15,7 +15,7 @@ import { AdminAuthModal } from './components/AdminAuthModal';
 import { AdminStoreSettingsModal } from './components/AdminStoreSettingsModal';
 import { Star, Layers, Download, Sparkles } from 'lucide-react';
 import { WhatsAppIcon, OfficialWhatsAppIcon, GoogleIcon, InstagramIcon } from './components/Icons';
-import { INSTAGRAM_POSTS, INSTAGRAM_URL } from './data/instagramPosts';
+import { INSTAGRAM_POSTS, INSTAGRAM_URL } from './data/instagramData';
 import { InstagramPost, AdminSession, StoreSettings } from './types';
 import { subscribeToAuthChanges, logoutAdmin, DEFAULT_STORE_SETTINGS } from './utils/adminAuthentication';
 import { getFirebaseStoreSettings, getFirebasePosts, saveFirebasePost, deleteFirebasePost } from './lib/firebaseStore';
