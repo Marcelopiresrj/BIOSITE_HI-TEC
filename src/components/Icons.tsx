@@ -41,10 +41,10 @@ export function GoogleIcon({ className = "w-5 h-5" }: { className?: string }) {
     >
       <defs>
         <linearGradient id="google-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#FF3B30" />
-          <stop offset="35%" stop-color="#FFCC00" />
-          <stop offset="70%" stop-color="#34C759" />
-          <stop offset="100%" stop-color="#007AFF" />
+          <stop offset="0%" stopColor="#FF3B30" />
+          <stop offset="35%" stopColor="#FFCC00" />
+          <stop offset="70%" stopColor="#34C759" />
+          <stop offset="100%" stopColor="#007AFF" />
         </linearGradient>
       </defs>
       <path 
@@ -65,10 +65,10 @@ export function GoogleMapsIcon({ className = "w-5 h-5" }: { className?: string }
     >
       <defs>
         <linearGradient id="maps-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#FF3B30" />
-          <stop offset="30%" stop-color="#FFCC00" />
-          <stop offset="70%" stop-color="#34C759" />
-          <stop offset="100%" stop-color="#007AFF" />
+          <stop offset="0%" stopColor="#FF3B30" />
+          <stop offset="30%" stopColor="#FFCC00" />
+          <stop offset="70%" stopColor="#34C759" />
+          <stop offset="100%" stopColor="#007AFF" />
         </linearGradient>
       </defs>
       <path 
