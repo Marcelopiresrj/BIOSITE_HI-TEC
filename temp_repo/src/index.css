@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+  }
+}
+
+.bg-radial-theme {
+  background: radial-gradient(circle at 50% -20%, #1e293b 0%, #0B0F17 100%);
+}
+
+.chassis-frame {
+  background: #0F172A;
+  border: 6px solid #1E293B;
+  box-shadow: 0 0 80px rgba(0, 0, 0, 0.6), 0 25px 50px -12px rgba(0, 242, 254, 0.08);
+}
+
+@media (max-width: 640px) {
+  .chassis-frame {
+    border: 2px solid #1E293B;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
+  }
+}
+
+.card-theme-glass {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.card-theme-glass:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+.card-whatsapp-highlight {
+  background: linear-gradient(90deg, #00F2FE 0%, #4FACFE 100%);
+  box-shadow: 0 10px 25px rgba(0, 242, 254, 0.25);
+}
+
+.card-whatsapp-highlight:hover {
+  box-shadow: 0 12px 30px rgba(0, 242, 254, 0.4);
+}
+

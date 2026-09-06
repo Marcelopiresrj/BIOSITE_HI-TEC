@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 120" width="100%" height="100%">
+  <defs>
+    <!-- Silver metallic gradient for HI- -->
+    <linearGradient id="silver-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#E2E8F0" />
+      <stop offset="40%" stop-color="#FFFFFF" />
+      <stop offset="60%" stop-color="#94A3B8" />
+      <stop offset="100%" stop-color="#64748B" />
+    </linearGradient>
+    <!-- Green gradient for TECH -->
+    <linearGradient id="green-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#84CC16" />
+      <stop offset="50%" stop-color="#22C55E" />
+      <stop offset="100%" stop-color="#15803D" />
+    </linearGradient>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#050505" rx="10" />
+  
+  <g transform="translate(0, 0)">
+    <!-- Top Left Circuit Traces (Green) -->
+    <g stroke="#4ADE80" stroke-width="1.5" fill="none">
+      <!-- Trace 1 -->
+      <path d="M-5,40 L20,15 L40,15" />
+      <circle cx="40" cy="15" r="3" fill="#050505" stroke="#4ADE80" />
+      <circle cx="10" cy="25" r="2" fill="#4ADE80" stroke="none" />
+      
+      <!-- Trace 2 -->
+      <path d="M-5,55 L35,15 L50,15 L60,5" />
+      <circle cx="60" cy="5" r="2" fill="#4ADE80" stroke="none" />
+      <circle cx="30" cy="20" r="3" fill="#050505" stroke="#4ADE80" />
+      
+      <!-- Trace 3 -->
+      <path d="M10,65 L40,35 L65,35" />
+      <circle cx="65" cy="35" r="3" fill="#050505" stroke="#4ADE80" />
+      <circle cx="25" cy="50" r="2" fill="#4ADE80" stroke="none" />
+      
+      <!-- Trace 4 -->
+      <path d="M40,75 L65,50 L85,50" />
+      <circle cx="85" cy="50" r="3" fill="#050505" stroke="#4ADE80" />
+    </g>
+
+    <!-- 9 Green Pixel Squares (Top-Right, aligned above TECH) -->
+    <g>
+      <rect x="135" y="15" width="10" height="10" fill="#84CC16" />
+      <rect x="153" y="15" width="10" height="10" fill="#65A30D" />
+      <rect x="171" y="15" width="10" height="10" fill="#4D7C0F" />
+      <rect x="189" y="15" width="10" height="10" fill="#65A30D" />
+      <rect x="207" y="15" width="10" height="10" fill="#84CC16" />
+      <rect x="225" y="15" width="10" height="10" fill="#22C55E" />
+      <rect x="243" y="15" width="10" height="10" fill="#16A34A" />
+      <rect x="261" y="15" width="10" height="10" fill="#15803D" />
+      <rect x="279" y="15" width="10" height="10" fill="#22C55E" />
+    </g>
+
+    <!-- Main Brand Name Text: "HI-TECH" -->
+    <text x="25" y="85" font-family="Arial, Helvetica, sans-serif" font-weight="900" font-size="78" font-style="italic" letter-spacing="-3px">
+      <tspan fill="url(#silver-grad)">HI-</tspan><tspan fill="url(#green-grad)">TECH</tspan>
+    </text>
+
+    <!-- 5 Green Pixel Squares (Bottom-Left, aligned below HI-) -->
+    <g>
+      <rect x="25" y="100" width="8" height="8" fill="#84CC16" />
+      <rect x="38" y="100" width="8" height="8" fill="#4ADE80" />
+      <rect x="51" y="100" width="8" height="8" fill="#22C55E" />
+      <rect x="64" y="100" width="8" height="8" fill="#16A34A" />
+      <rect x="77" y="100" width="8" height="8" fill="#15803D" />
+    </g>
+
+    <!-- Subtitle: INFORMÁTICA / ELETRÔNICOS -->
+    <text x="100" y="108" fill="#CBD5E1" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="12" font-style="italic" letter-spacing="1px">
+      INFORMÁTICA / ELETRÔNICOS
+    </text>
+  </g>
+</svg>

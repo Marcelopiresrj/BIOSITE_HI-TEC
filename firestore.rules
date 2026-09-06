@@ -1,0 +1,106 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return isSignedIn() && exists(/databases/$(database)/documents/users/$(request.auth.uid)) && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role in ['master', 'admin'];
+    }
+
+    function isMaster() {
+      return isSignedIn() && exists(/databases/$(database)/documents/users/$(request.auth.uid)) && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'master';
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() > 0 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function isValidUser(data) {
+      return data.keys().hasAll(['name', 'email', 'role', 'createdAt'])
+        && data.name is string && data.name.size() <= 100
+        && data.email is string && data.email.size() <= 150
+        && data.role is string && data.role in ['master', 'admin']
+        && data.createdAt is string
+        && (data.updatedAt == null || data.updatedAt is string);
+    }
+
+    function isValidStoreSettings(data) {
+      return data.keys().hasAll(['name', 'handle', 'phone', 'displayPhone', 'bio', 'status', 'hours', 'address'])
+        && data.name is string && data.name.size() <= 100
+        && data.handle is string && data.handle.size() <= 50
+        && data.phone is string && data.phone.size() <= 20
+        && data.displayPhone is string && data.displayPhone.size() <= 30
+        && data.bio is string && data.bio.size() <= 500
+        && data.status is string && data.status.size() <= 50
+        && data.hours is string && data.hours.size() <= 100
+        && data.address is string && data.address.size() <= 200
+        && (data.updatedAt == null || data.updatedAt is string);
+    }
+
+    function isValidPost(data) {
+      return data.keys().hasAll(['type', 'title', 'category', 'categoryLabel', 'mediaUrl', 'thumbnailUrl', 'likes', 'caption', 'instagramUrl', 'whatsappMessage', 'createdAt'])
+        && data.type is string && data.type in ['video', 'photo']
+        && data.title is string && data.title.size() <= 200
+        && data.category is string && data.category in ['reels', 'smartphones', 'acessorios', 'assistencia']
+        && data.categoryLabel is string && data.categoryLabel.size() <= 50
+        && data.mediaUrl is string && data.mediaUrl.size() <= 1000
+        && data.thumbnailUrl is string && data.thumbnailUrl.size() <= 1000
+        && data.likes is string && data.likes.size() <= 20
+        && data.caption is string && data.caption.size() <= 2000
+        && data.instagramUrl is string && data.instagramUrl.size() <= 1000
+        && data.whatsappMessage is string && data.whatsappMessage.size() <= 500
+        && data.createdAt is string
+        && (data.views == null || (data.views is string && data.views.size() <= 20))
+        && (data.duration == null || (data.duration is string && data.duration.size() <= 20))
+        && (data.badge == null || (data.badge is string && data.badge.size() <= 50))
+        && (data.price == null || (data.price is string && data.price.size() <= 50));
+    }
+
+    match /users/{userId} {
+      allow get: if isAdmin() && isValidId(userId);
+      allow list: if isAdmin();
+      
+      // We allow creation by master, but since this app originally creates the master if no admin exists,
+      // we need to allow the FIRST user creation if the collection is empty.
+      // Wait, we can't easily check if collection is empty in rules. We can use Firebase Auth to just sign in, 
+      // but in the rules, how do we bootstrap the first master?
+      // Since it's a known email or we can use email_verified.
+      // Let's allow creating a 'master' if the incoming email is the admin's email or allow anyone to create if no other admins exist?
+      // Actually, since I have the user's email: marcelopirestrader@gmail.com, I can hardcode it as the bootstrap admin.
+      allow create: if isSignedIn() && isValidId(userId) && userId == request.auth.uid && isValidUser(incoming()) && (
+        isMaster() || request.auth.token.email == 'marcelopirestrader@gmail.com'
+      );
+
+      allow update: if isMaster() && isValidId(userId) && isValidUser(incoming()) && incoming().createdAt == existing().createdAt;
+      allow delete: if isMaster() && isValidId(userId);
+    }
+
+    match /storeSettings/{settingId} {
+      allow read: if true;
+      allow create: if isAdmin() && isValidId(settingId) && isValidStoreSettings(incoming());
+      allow update: if isAdmin() && isValidId(settingId) && isValidStoreSettings(incoming());
+      allow delete: if false; // Don't delete settings
+    }
+
+    match /posts/{postId} {
+      allow read: if true;
+      allow create: if isAdmin() && isValidId(postId) && isValidPost(incoming());
+      allow update: if isAdmin() && isValidId(postId) && isValidPost(incoming()) && incoming().createdAt == existing().createdAt;
+      allow delete: if isAdmin() && isValidId(postId);
+    }
+  }
+}

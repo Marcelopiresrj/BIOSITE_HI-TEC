@@ -1,0 +1,6 @@
+{
+  "name": "Hi-Tech Eletrônicos",
+  "description": "Hi-Tech Eletrônicos - Montagem e Manutenção de Celulares e Tablets. Troca de telas, touch, conectores, microfone, baterias, câmeras e alto-falantes.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

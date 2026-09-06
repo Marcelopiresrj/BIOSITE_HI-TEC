@@ -1,0 +1,71 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "An administrator account for the store.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "maxLength": 100 },
+        "email": { "type": "string", "maxLength": 150 },
+        "role": { "type": "string", "enum": ["master", "admin"] },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["name", "email", "role", "createdAt"]
+    },
+    "StoreSettings": {
+      "title": "StoreSettings",
+      "description": "Global settings for the store.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "maxLength": 100 },
+        "handle": { "type": "string", "maxLength": 50 },
+        "phone": { "type": "string", "maxLength": 20 },
+        "displayPhone": { "type": "string", "maxLength": 30 },
+        "bio": { "type": "string", "maxLength": 500 },
+        "status": { "type": "string", "maxLength": 50 },
+        "hours": { "type": "string", "maxLength": 100 },
+        "address": { "type": "string", "maxLength": 200 },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["name", "handle", "phone", "displayPhone", "bio", "status", "hours", "address"]
+    },
+    "Post": {
+      "title": "Post",
+      "description": "An Instagram post or video.",
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "enum": ["video", "photo"] },
+        "title": { "type": "string", "maxLength": 200 },
+        "category": { "type": "string", "enum": ["reels", "smartphones", "acessorios", "assistencia"] },
+        "categoryLabel": { "type": "string", "maxLength": 50 },
+        "mediaUrl": { "type": "string", "maxLength": 1000 },
+        "thumbnailUrl": { "type": "string", "maxLength": 1000 },
+        "likes": { "type": "string", "maxLength": 20 },
+        "views": { "type": "string", "maxLength": 20 },
+        "duration": { "type": "string", "maxLength": 20 },
+        "caption": { "type": "string", "maxLength": 2000 },
+        "badge": { "type": "string", "maxLength": 50 },
+        "price": { "type": "string", "maxLength": 50 },
+        "instagramUrl": { "type": "string", "maxLength": 1000 },
+        "whatsappMessage": { "type": "string", "maxLength": 500 },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["type", "title", "category", "categoryLabel", "mediaUrl", "thumbnailUrl", "likes", "caption", "instagramUrl", "whatsappMessage", "createdAt"]
+    }
+  },
+  "firestore": {
+    "users/{userId}": {
+      "schema": { "$ref": "#/entities/User" },
+      "description": "Stores user profiles with their roles (master, admin)."
+    },
+    "storeSettings/{settingId}": {
+      "schema": { "$ref": "#/entities/StoreSettings" },
+      "description": "Stores global settings for the store. Expected ID is 'main'."
+    },
+    "posts/{postId}": {
+      "schema": { "$ref": "#/entities/Post" },
+      "description": "Stores Instagram posts data."
+    }
+  }
+}
