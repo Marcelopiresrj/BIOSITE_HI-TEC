@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { X, Clock, MapPin, Phone, ShieldCheck, CheckCircle2, Navigation, AlertCircle, ChevronDown, ChevronUp } from 'lucide-react';
 import { WhatsAppIcon } from './Icons';
 import { StoreSettings } from '../types';
-import { getStoreStatus } from '../utils/storeStatus';
+import { getStoreStatus } from '../utils/storeAvailability';
 
 interface HoursModalProps {
   isOpen: boolean;

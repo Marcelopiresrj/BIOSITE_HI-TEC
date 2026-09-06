@@ -3,7 +3,7 @@ import { motion } from 'motion/react';
 import { CheckCircle2, Copy, Check, Wrench, Phone, Smartphone, Gamepad2 } from 'lucide-react';
 import { StoreSettings } from '../types';
 import logoImg from '../assets/images/hitech_logo_circle_1788577271122.jpg';
-import { getStoreStatus } from '../utils/storeStatus';
+import { getStoreStatus } from '../utils/storeAvailability';
 
 interface HeaderProfileProps {
   onCopyHandle: () => void;
