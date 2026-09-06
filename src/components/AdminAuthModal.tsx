@@ -43,6 +43,7 @@ export const AdminAuthModal: React.FC<AdminAuthModalProps> = ({
   const [confirmPassword, setConfirmPassword] = useState('');
 
   // UI helpers
+  const hasAdmins = true;
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -56,7 +57,7 @@ export const AdminAuthModal: React.FC<AdminAuthModalProps> = ({
     }
   }, [isOpen]);
 
-  if (!isOpen) return null;
+  
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -132,7 +133,7 @@ export const AdminAuthModal: React.FC<AdminAuthModalProps> = ({
   };
 
   return (
-    <AnimatePresence>
+    <AnimatePresence> {isOpen && (
       <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md">
         <motion.div
           initial={{ opacity: 0, scale: 0.95, y: 15 }}
@@ -436,6 +437,6 @@ export const AdminAuthModal: React.FC<AdminAuthModalProps> = ({
           )}
         </motion.div>
       </div>
-    </AnimatePresence>
+    )} </AnimatePresence>
   );
 };
