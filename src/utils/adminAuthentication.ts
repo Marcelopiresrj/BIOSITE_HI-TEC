@@ -42,12 +42,23 @@ export async function registerAdmin(params: {
     // Check if we want this to be master. For now, let's just make the user 'master' if they are the first or specific email
     const role = 'master'; // Everyone registering through the UI initially is master for this demo, or we can enforce security rules.
     
-    await setDoc(doc(db, 'users', user.uid), {
-      name: params.name,
-      email: params.email,
-      role: role,
-      createdAt: new Date().toISOString(),
-    });
+    try {
+      await setDoc(doc(db, 'users', user.uid), {
+        name: params.name,
+        email: params.email,
+        role: role,
+        createdAt: new Date().toISOString(),
+      });
+    } catch (dbError: any) {
+      console.error("Database permission error after auth creation:", dbError);
+      // Clean up the auth user if DB write fails so they aren't stuck in "email already in use" limbo
+      try {
+        await user.delete();
+      } catch (e) {
+        console.error("Failed to cleanup user auth record after DB failure", e);
+      }
+      throw new Error("Erro de permissão no banco de dados. Conta não foi criada.");
+    }
 
     return { 
       success: true, 
@@ -57,7 +68,14 @@ export async function registerAdmin(params: {
       } 
     };
   } catch (error: any) {
-    return { success: false, error: error.message };
+    console.error("Registration error:", error);
+    let errorMessage = error.message || error;
+    if (typeof errorMessage === 'string' && errorMessage.includes('email-already-in-use')) {
+      errorMessage = 'Este e-mail já está cadastrado! Vá na aba "Entrar" e tente fazer o login, ou exclua a conta no Console do Firebase.';
+    } else if (typeof errorMessage === 'string' && (errorMessage.includes('Missing or insufficient permissions') || errorMessage.includes('Erro de permissão'))) {
+      errorMessage = 'Erro de permissão no banco de dados (o Firebase ainda está atualizando as regras). Aguarde 1 minuto e tente novamente.';
+    }
+    return { success: false, error: errorMessage };
   }
 }
 
