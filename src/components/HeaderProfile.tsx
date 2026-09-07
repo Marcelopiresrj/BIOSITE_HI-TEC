@@ -41,8 +41,28 @@ export const HeaderProfile: React.FC<HeaderProfileProps> = ({
       className="flex flex-col items-center text-center pt-2 pb-5 px-3 w-full"
     >
       {/* Avatar Container with Professional Polish Gradient Ring and prominent Hi-Tech Logo */}
-      <div className="relative mb-4 group">
-        <div className="relative p-1 rounded-full bg-gradient-to-tr from-[#00F2FE] via-[#7928CA] to-[#FF0080] shadow-[0_0_30px_rgba(0,242,254,0.4)] transition-transform duration-300 group-hover:scale-105">
+      <div className="relative mb-4 group flex justify-center items-center w-full">
+        {/* Left Side Floating Image (PS5) */}
+        <motion.div 
+          initial={{ opacity: 0, x: -20, rotate: -5 }}
+          animate={{ opacity: 1, x: 0, rotate: 0 }}
+          transition={{ delay: 0.3, duration: 0.8, type: 'spring' }}
+          className="absolute left-1 sm:left-4 top-1/2 -translate-y-1/2 w-[90px] h-[90px] sm:w-[120px] sm:h-[120px] z-0 drop-shadow-[0_10px_20px_rgba(0,0,0,0.8)] pointer-events-none"
+        >
+           <img src="/ps5.png" alt="PlayStation 5" className="w-full h-full object-contain filter drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]" />
+        </motion.div>
+
+        {/* Right Side Floating Image (Xbox) */}
+        <motion.div 
+          initial={{ opacity: 0, x: 20, rotate: 5 }}
+          animate={{ opacity: 1, x: 0, rotate: 0 }}
+          transition={{ delay: 0.4, duration: 0.8, type: 'spring' }}
+          className="absolute right-1 sm:right-4 top-1/2 -translate-y-1/2 w-[90px] h-[90px] sm:w-[120px] sm:h-[120px] z-0 drop-shadow-[0_10px_20px_rgba(0,0,0,0.8)] pointer-events-none"
+        >
+           <img src="/xbox.png" alt="Xbox Series S" className="w-full h-full object-contain filter drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]" />
+        </motion.div>
+
+        <div className="relative p-1 rounded-full bg-gradient-to-tr from-[#00F2FE] via-[#7928CA] to-[#FF0080] shadow-[0_0_30px_rgba(0,242,254,0.4)] transition-transform duration-300 group-hover:scale-105 z-10">
           <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-full bg-black flex items-center justify-center p-2.5 overflow-hidden border-[3px] border-[#1E293B] shadow-inner relative group-hover:border-cyan-500/40 transition-colors">
             {/* Subtle background tech texture */}
             <div className="absolute inset-0 opacity-20 bg-[radial-gradient(#00F2FE_1px,transparent_1px)] [background-size:10px_10px]" />

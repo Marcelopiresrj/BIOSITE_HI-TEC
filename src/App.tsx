@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
+import { InstagramFilterBar } from "./components/InstagramFilterBar";
 import { HeaderProfile } from './components/HeaderProfile';
 import { LinkCard } from './components/LinkCard';
 import { InstagramFeedSection } from './components/InstagramFeedSection';
@@ -41,6 +42,15 @@ export default function App() {
   const isAdmin = Boolean(adminSession);
 
   const [posts, setPosts] = useState<InstagramPost[]>(INSTAGRAM_POSTS);
+  const [activeFilter, setActiveFilter] = useState("todos");
+
+  const filteredPosts = posts.filter(post => {
+    if (activeFilter === "todos") return true;
+    if (activeFilter === "videos") return post.type === "video" || post.category === "reels";
+    if (activeFilter === "smartphones") return post.category === "smartphones";
+    if (activeFilter === "acessorios") return post.category === "acessorios";
+    return true;
+  });
 
   // Load from Firebase
   React.useEffect(() => {
@@ -258,8 +268,23 @@ export default function App() {
               storeSettings={storeSettings}
             />
 
+            {/* Instagram Filters */}
+            <InstagramFilterBar
+              activeFilter={activeFilter}
+              onFilterChange={setActiveFilter}
+            />
+
+            {/* Interactive Instagram Feed Section with Horizontal Right-Scroll & Add/Delete Options */}
+            <InstagramFeedSection
+              posts={filteredPosts}
+              onSelectPost={setSelectedInstagramPost}
+              onOpenAddMedia={isAdmin ? handleOpenAddMedia : undefined}
+              onDeletePost={isAdmin ? handleDeletePost : undefined}
+              instagramUrl={instagramUrl}
+            />
+
             {/* Links & CTA Cards Section */}
-            <section id="links-container" className="w-full flex flex-col gap-3 my-1">
+            <section id="links-container" className="w-full flex flex-col gap-3 mt-4 mb-1">
               {/* 1. Instagram Oficial */}
               <LinkCard
                 id="link-instagram-official"
@@ -292,15 +317,6 @@ export default function App() {
                 delayIndex={2}
               />
             </section>
-
-            {/* Interactive Instagram Feed Section with Horizontal Right-Scroll & Add/Delete Options */}
-            <InstagramFeedSection
-              posts={posts}
-              onSelectPost={setSelectedInstagramPost}
-              onOpenAddMedia={isAdmin ? handleOpenAddMedia : undefined}
-              onDeletePost={isAdmin ? handleDeletePost : undefined}
-              instagramUrl={instagramUrl}
-            />
 
             {/* Social Proof Banner */}
             <motion.div
@@ -342,7 +358,7 @@ export default function App() {
 
         {/* Desktop Expansive Instagram Live Showcase Panel (side-by-side on desktop) */}
         <DesktopInstagramPanel
-          posts={posts}
+          posts={filteredPosts}
           onSelectPost={setSelectedInstagramPost}
           onOpenAddMedia={isAdmin ? handleOpenAddMedia : undefined}
           onDeletePost={isAdmin ? handleDeletePost : undefined}
