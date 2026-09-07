@@ -82,7 +82,7 @@ service cloud.firestore {
       // Let's allow creating a 'master' if the incoming email is the admin's email or allow anyone to create if no other admins exist?
       // Actually, since I have the user's email: marcelopirestrader@gmail.com, I can hardcode it as the bootstrap admin.
       allow create: if isSignedIn() && isValidId(userId) && userId == request.auth.uid && isValidUser(incoming()) && (
-        isMaster() || request.auth.token.email == 'marcelopirestrader@gmail.com'
+        isMaster() || request.auth.token.email == 'marcelomotoslive@gmail.com'
       );
 
       allow update: if isMaster() && isValidId(userId) && isValidUser(incoming()) && incoming().createdAt == existing().createdAt;
