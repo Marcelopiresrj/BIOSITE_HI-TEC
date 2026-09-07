@@ -28,14 +28,23 @@ export const DEFAULT_STORE_SETTINGS: StoreSettings = {
   pixReceiver: 'Hi-Tech Eletrônicos',
 };
 
+// O PIN de segurança mestre para criar novas contas de administrador. 
+// Você pode alterar este valor se desejar.
+export const MASTER_SECURITY_PIN = "123456";
+
 // Instead of checking length of accounts, check if a master exists by some mechanism.
 // For the sake of simplification and security, we'll assume first registration or specific email gets master.
 export async function registerAdmin(params: {
   name: string;
   email: string;
   password: string;
+  pin: string;
 }): Promise<{ success: boolean; error?: string; session?: AdminSession }> {
   try {
+    if (params.pin !== MASTER_SECURITY_PIN) {
+      return { success: false, error: 'O PIN de segurança está incorreto.' };
+    }
+
     const userCredential = await createUserWithEmailAndPassword(auth, params.email, params.password);
     const user = userCredential.user;
     

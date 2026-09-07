@@ -41,6 +41,7 @@ export const AdminAuthModal: React.FC<AdminAuthModalProps> = ({
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [pin, setPin] = useState('');
 
   // UI helpers
   const hasAdmins = true;
@@ -95,6 +96,7 @@ export const AdminAuthModal: React.FC<AdminAuthModalProps> = ({
         name,
         email,
         password,
+        pin,
       });
 
       if (res.success && res.session) {
@@ -373,6 +375,22 @@ export const AdminAuthModal: React.FC<AdminAuthModalProps> = ({
                       className="w-full px-3 py-2.5 rounded-xl bg-slate-900 border border-slate-700 focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 text-sm text-white placeholder-slate-500 outline-none transition-all"
                     />
                   </div>
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-xs font-medium text-slate-300 mb-1">
+                  PIN de Segurança Mestre
+                </label>
+                <div className="relative">
+                  <input
+                    type="password"
+                    required
+                    value={pin}
+                    onChange={(e) => setPin(e.target.value)}
+                    placeholder="Digite o código de autorização"
+                    className="w-full px-3 py-2.5 rounded-xl bg-slate-900 border border-slate-700 focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 text-sm text-white placeholder-slate-500 outline-none transition-all"
+                  />
                 </div>
               </div>
 
