@@ -165,7 +165,7 @@ export const AdminAuthModal: React.FC<AdminAuthModalProps> = ({
             <div>
               <div className="flex items-center gap-1.5">
                 <h3 className="text-lg font-bold text-white font-['Outfit']">
-                  Painel do Administrador
+                  Painel do Administrador <span className="text-xs text-green-400 ml-1">v2.1</span>
                 </h3>
                 <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-cyan-500/15 text-cyan-300 border border-cyan-500/30">
                   Restrito
