@@ -74,9 +74,7 @@ service cloud.firestore {
       allow get: if isAdmin() && isValidId(userId);
       allow list: if isAdmin();
       
-      allow create: if isSignedIn() && isValidId(userId) && userId == request.auth.uid && isValidUser(incoming()) && (
-        isMaster() || incoming().email == 'marcelomotoslive@gmail.com' || incoming().email == 'marcelopirestrader@gmail.com'
-      );
+      allow create: if isSignedIn() && isValidId(userId) && userId == request.auth.uid && isValidUser(incoming());
 
       allow update: if isMaster() && isValidId(userId) && isValidUser(incoming()) && incoming().createdAt == existing().createdAt;
       allow delete: if isMaster() && isValidId(userId);
