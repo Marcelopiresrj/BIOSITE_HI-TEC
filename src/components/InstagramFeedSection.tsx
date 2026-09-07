@@ -60,26 +60,7 @@ export const InstagramFeedSection: React.FC<InstagramFeedSectionProps> = ({
   return (
     <section id="instagram-interactive-section" className="w-full my-4">
       {/* Section Header */}
-      <div className="flex items-center justify-between mb-3 px-1 gap-1">
-        <div className="flex items-center gap-2">
-          <div className="p-1.5 rounded-lg bg-gradient-to-tr from-[#7928CA] to-[#FF0080] text-white shadow-md shadow-purple-500/20">
-            <InstagramIcon className="w-4 h-4 fill-white" />
-          </div>
-          <div>
-            <div className="flex items-center gap-1.5">
-              <h2 className="font-bold text-sm sm:text-base text-white font-['Outfit']">
-                Destaques do Instagram
-              </h2>
-              <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-cyan-500/10 text-cyan-400 font-bold border border-cyan-500/20">
-                Interativo
-              </span>
-            </div>
-            <p className="text-[11px] text-slate-400">
-              Vídeos, unboxings e novidades da loja
-            </p>
-          </div>
-        </div>
-
+      <div className="flex items-center justify-end mb-3 px-1 gap-1">
         {/* Action button & Scroll Controls */}
         <div className="flex items-center gap-1.5">
           {onOpenAddMedia && (
