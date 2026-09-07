@@ -379,7 +379,7 @@ export const AdminAuthModal: React.FC<AdminAuthModalProps> = ({
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-[#00F2FE] to-[#4FACFE] hover:brightness-110 text-[#0B0F17] font-bold text-sm flex items-center justify-center gap-2 shadow-lg shadow-cyan-500/25 transition-all cursor-pointer mt-3 disabled:opacity-50"
+                className="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-emerald-400 to-green-500 hover:brightness-110 text-[#0B0F17] font-bold text-sm flex items-center justify-center gap-2 shadow-lg shadow-green-500/25 transition-all cursor-pointer mt-3 disabled:opacity-50"
               >
                 {loading ? (
                   <span>Salvando cadastro...</span>

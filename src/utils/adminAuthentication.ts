@@ -42,6 +42,7 @@ export async function registerAdmin(params: {
     // Check if we want this to be master. For now, let's just make the user 'master' if they are the first or specific email
     const role = 'master'; // Everyone registering through the UI initially is master for this demo, or we can enforce security rules.
     
+    // Update 2026: Force push fix for Vercel deployment and permission errors
     try {
       await setDoc(doc(db, 'users', user.uid), {
         name: params.name,
